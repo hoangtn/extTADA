@@ -2,6 +2,8 @@
 
 This is used to describe the workflow of the hierachical bayesian project.
 
+Click here [describeModels.pdf](./describeModels.pdf) to take a quick look at the work.
+
 Go to [Model](./Model) to see the description of different models.
 
 Go to [MutationRate](./MutationRate) to see files relating to mutation-rate calculation.
