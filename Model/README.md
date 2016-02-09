@@ -1,5 +1,4 @@
-There are two types of models:
+There are two types of models *internal model* and *external model*.
 
-##Internal model
+I have got some problems with Maths Equations in Markdown here, so just go back the sides to better understand the model.
 
-$P(x_i|\Theta) = (1 - \pi)P(x_{i}^{LoF}|\Theta_{LoF})$
