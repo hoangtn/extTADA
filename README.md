@@ -12,3 +12,6 @@ Go to [MutationRate](./MutationRate) to see files relating to mutation-rate calc
 Summarization for the external model of extTADA is in [Test_nloptr_rjags_forDenovoData_finalVersion.ipynb](./Test_nloptr_rjags_forDenovoData_finalVersion.ipynb)
 
 I write some methods (EM, Gibbs sampling, Metropolis-Hasting, rstan, Variational Inference in rstan, rjags) to estimate parameters of a simple Poisson mixture model in [estimate_parameters_of_poisson_mixture.ipynb](./estimate_parameters_of_poisson_mixture.ipynb)
+
+Eli is adding something
+
