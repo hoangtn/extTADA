@@ -1,6 +1,5 @@
 We are using MCMC to estimate all parameters simultaneously, using this model:
 
-
 $P(x| paramterers) = \prod_{i=1}^{m} \left[ \pi \textcolor{blue}{P(x_{i_{LoF}}|H_1)} \textcolor{brown}{P(x_{i_{mis3}}|H_1)} + (1 - \pi)\textcolor{blue}{P(x_{i_{LoF}}|H_0)} \textcolor{brown}{P(x_{i_{mis3}}|H_0)} \right] $
 
 
@@ -26,3 +25,5 @@ intersect_with_giulio_genesets.ipynb
 2) Choose top 100 genes from TADA results in:
 
 intersect_with_giulio_genesets_top100.ipynb
+
+Some significant results (overlapping genes) can be seen for FDR_scz2016_Singleon_noexac_pi026.txt.sort03 and FDR_scz2016_april.lof_maf001_missense_maf001pi.0.03.notMissenseInEstimation.txt 
