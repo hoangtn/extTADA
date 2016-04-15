@@ -1,3 +1,7 @@
+We are using MCMC to estimate all parameters simultaneously, using this model:
+
+
+
 Missense damaging variants = missense variants + reported by 7 different methods
 
 We are testing on these:
@@ -10,3 +14,9 @@ lof_maf001_noexac	missense_maf001_noexac
 disruptive_Singleton_broad	damaging_Singleton_broad
 disruptive_Singleton_broad_noexac	damaging_Singleton_broad_noexac
 
+
+We intersected gene lists with other gene sets by:
+
+1) Choose genes with FDR < 0.3
+
+2) Choose top 100 genes from TADA results
