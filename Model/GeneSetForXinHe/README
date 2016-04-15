@@ -1,0 +1,12 @@
+Missense damaging variants = missense variants + reported by 7 different methods
+
+We are testing on these:
+
+lof_maf001	damaging_maf001
+lof_Singleton	missense_Singleton
+lof_Singleton_noexac	missense_Singleton_noexac
+lof_maf001	missense_maf001
+lof_maf001_noexac	missense_maf001_noexac
+disruptive_Singleton_broad	damaging_Singleton_broad
+disruptive_Singleton_broad_noexac	damaging_Singleton_broad_noexac
+
