@@ -15,7 +15,8 @@ lof_maf001_noexac	missense_maf001_noexac
 disruptive_Singleton_broad	damaging_Singleton_broad
 disruptive_Singleton_broad_noexac	damaging_Singleton_broad_noexac
 
-Some plots of current results are in *png files.
+###########
+### Some plots of current results are in *png files.
 
 There are two pictures for Autism paper in 2014: 
 
@@ -23,7 +24,8 @@ There are two pictures for Autism paper in 2014:
 
 2) Use missense case-control data in the estimation: Tplot_autism2014.png
 
-We intersected gene lists with other gene sets by:
+############
+### We intersected gene lists with other gene sets by:
 
 1) Choose genes with FDR < 0.3 in:
 
