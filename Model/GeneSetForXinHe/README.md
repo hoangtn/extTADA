@@ -7,19 +7,19 @@ Missense damaging variants = missense variants + reported by 7 different methods
 
 We are testing on these:
 
-lof_maf001	damaging_maf001
+lof_maf001	AND	damaging_maf001
 
-lof_Singleton	missense_Singleton
+lof_Singleton	AND	missense_Singleton
 
-lof_Singleton_noexac	missense_Singleton_noexac
+lof_Singleton_noexac	AND	missense_Singleton_noexac
 
-lof_maf001	missense_maf001
+lof_maf001	AND	missense_maf001
 
-lof_maf001_noexac	missense_maf001_noexac
+lof_maf001_noexac	AND	missense_maf001_noexac
 
-disruptive_Singleton_broad	damaging_Singleton_broad
+disruptive_Singleton_broad	AND	damaging_Singleton_broad
 
-disruptive_Singleton_broad_noexac	damaging_Singleton_broad_noexac
+disruptive_Singleton_broad_noexac	AND	damaging_Singleton_broad_noexac
 
 ###########
 ### Some plots of current results are in *png files.
