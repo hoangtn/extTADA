@@ -2,7 +2,7 @@
 
 This is used to describe the workflow of the hierachical bayesian project.
 
-Click here [describeModels.pdf](./describeModels.pdf) to take a quick look at the work.
+Click here [presentMay2016.pdf](./presentMay2016.pdf) to take a quick look at current presenation.
 
 Go to [Model](./Model) to see the description of different models.
 
