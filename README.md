@@ -8,7 +8,11 @@
 
 ## Requirement
 
-*rstan*, *locfit* have to be installed.
+These packages have to be installed:
+
+1. *rstan*: [https://cran.r-project.org/web/packages/rstan/index.html](./https://cran.r-project.org/web/packages/rstan/index.html)
+
+2. *locfit* [https://cran.rstudio.com/web/packages/locfit/index.html](./https://cran.rstudio.com/web/packages/locfit/index.html)
 
 ## extTADA can also be used for only de novo data OR only case/control (transmitted/untransmitted) data.
 
