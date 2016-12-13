@@ -21,5 +21,7 @@ estimatePars <- function(pars, mcmcResult, nThin = NULL){
     }
     rownames(hpdList) <- pars
 
+    colnames(hpdList) <- c("Mode", "lCI", "uCI")
+
 return(hpdList)
 }

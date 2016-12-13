@@ -6,6 +6,12 @@
 
 3. Predict number of significant genes based on a threshold using known genetic parameters (mainly from the tested data sets).
 
+# extTADA can also be used:
+
+1. For only de novo data OR only case/control (transmitted/untransmitted) data.
+
+2. For multiple-population data.
+
 ## Requirement
 
 These packages have to be installed:
@@ -14,9 +20,10 @@ These packages have to be installed:
 
 2. *locfit* [https://cran.rstudio.com/web/packages/locfit/index.html](./https://cran.rstudio.com/web/packages/locfit/index.html)
 
-## extTADA can also be used for only de novo data OR only case/control (transmitted/untransmitted) data.
 
 # Examples
+
+Users can re-produce examples below to know how to use extTADA.
 
 ## Developmental disorder (DD) data
 
