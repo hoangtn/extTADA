@@ -1,0 +1,49 @@
+x <- rnorm(100)
+source("script/TADA.R")
+source("script/extTADA.R")
+fileN <- "DN.adjustBeta.1.3.nI20000.nThin.1.index.15_42_Dec_01_2016.lof_DD.damaging_DD.nGroupDN.2.nGroupCC.2.adjustRatio.1.RData"
+fileN <- "DN.adjustBeta.1.3.nI20000.nThin.1.index.15_42_Dec_01_2016.lof_AST.damaging_AST.nGroupDN.2.nGroupCC.2.adjustRatio.1.RData"
+fileN <- "GuipponiArrayNoFINcombined.DNandCC.adjustHyperBeta.0..adjustRatioMut.1.3.nIteration20000.nThin.20.index.10_46_24_November.nGroupDN.3.nGroupCC.3.damaging.SameBeta.RData"
+#load(paste0("../NewTestR/TestR/HBproject/MainPaper/RDataNewDec1/", fileN))
+load(paste0("../NewTestR/TestR/HBproject/MainPaper/RDataNew1/", fileN))
+#load("/Users/hoang/Documents/GitHub/DataFile/Test4testPrior1077/TestArray.200010.gammaMeanDN.1.5.gammaMeanDenovo.20.gammaMeanDN2.1.5.gammaMeanDenovo2.5.pi0.0.05.rhocC.0.0002161572.rhoCC2.0.000123642505820651.lowerHyperGamma.1.casecontrolAndDenovo.1classes.RData")
+fileR <- dir("script", ".R$")
+for (ii in fileR)
+    source(paste0("script/", ii))
+
+stan_trace(testIntegratedModel)
+
+pars0 <- estimatePars(pars = colnames(as.data.frame(testIntegratedModel)),
+                     mcmcResult = testIntegratedModel)
+
+
+plotParHeatmap(pars = c("pi0", "hyperGammaMeanDN[1]"), mcmcResult = testIntegratedModel)
+
+par(mfcol = c(3, 2))
+for (ii in 1:3)
+    plotParHeatmap(pars = c("pi0", paste0("hyperGammaMeanDN[", ii, "]")), mcmcResult = testIntegratedModel,
+                   xLab = 'Proportion of risk genes', yLab = paste0("DN mean RR ", ii))
+for (ii in 1:3)
+    plotParHeatmap(pars = c("pi0", paste0("hyperGammaMeanCC[", ii, "]")), mcmcResult = testIntegratedModel,
+                   xLab = 'Proportion of risk genes', yLab = paste0("CC mean RR ", ii))
+
+#pars = list(gammaMeanDN, gammaMeanCC, betaDN, betaCC, pi0)
+allPar = pars0[, 1]
+pars = list(gammaMeanDN = allPar[grep("hyperGammaMeanDN", names(allPar))],
+            betaDN = allPar[grep("hyperBetaDN", names(allPar))],
+            gammaMeanCC = allPar[grep("hyperGammaMeanCC", names(allPar))],
+            betaCC = allPar[grep("hyperBetaCC", names(allPar))],
+            pi0 = allPar[grep("pi0", names(allPar))],
+            nfamily = rep(ntrio, 3),
+            ncase = allNcase,
+            ncontrol = allNcontrol)
+caseData <- allCaseData
+controlData <- allControlData
+dnData <- allDenovoData
+mutData <- allMutationData
+geneName <- data[, 1]
+
+data22 <- calculateFDR(pars = pars,
+                       caseData = caseData, controlData = controlData,
+                       dnData = dnData, mutData = mutData,
+                       geneName = geneName)
