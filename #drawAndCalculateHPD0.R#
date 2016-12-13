@@ -48,3 +48,4 @@ data22 <- calculateFDR(pars = pars,
                        caseData = caseData, controlData = controlData,
                        dnData = dnData, mutData = mutData,
                        geneName = geneName)
+cbind(data[, 1], NULL)

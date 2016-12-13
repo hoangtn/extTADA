@@ -1,14 +1,24 @@
 calculateFDR <- function(pars,
-                         caseData,
-                         controlData,
-                         dnData,
-                         mutData,
+                         caseData = NULL,
+                         controlData = NULL,
+                         dnData = NULL,
+                         mutData = NULL,
                          geneName){
-    outData <- data.frame(geneName, dnData, mutData, caseData, controlData)
+    outData <- data.frame(geneName)
+    if (!is.null(dnData))
+        outData <- cbind(outData, dnData)
+    if (!is.null(mutData))
+        outData <- cbind(outData, mutData)
+    if (!is.null(caseData))
+        outData <- cbind(outData, caseData)
+    if (!is.null(controlData))
+        outData <- cbind(outData, controlData)
+
+
     bfAll <- rep(1, dim(outData)[1])
 
     if ( length(pars$gammaMeanDN) == 0) {
-        message("No parameters for de novo data")
+        message("No parameters for de novo data; therefore, these categories are not calculated in this step.\n")
         }  else {
         bfDN <- matrix(1, nrow = dim(dnData)[1], ncol = dim(dnData)[2]) ##De novo bayes factors
         for (j2 in 1:dim(bfDN)[2]) {
@@ -25,7 +35,7 @@ calculateFDR <- function(pars,
     }
 
     if (length(pars$gammaMeanCC) == 0) {
-        message("No parameters for case-control data")
+        message("No parameters for case-control data;  therefore, these categories are not calculated in this step.\n")
     } else {
 
         bfCC <- matrix(1, ncol = dim(caseData)[2], nrow = dim(caseData)[1])
