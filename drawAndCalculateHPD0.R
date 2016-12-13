@@ -6,13 +6,13 @@ fileN <- "DN.adjustBeta.1.3.nI20000.nThin.1.index.15_42_Dec_01_2016.lof_AST.dama
 fileN <- "GuipponiArrayNoFINcombined.DNandCC.adjustHyperBeta.0..adjustRatioMut.1.3.nIteration20000.nThin.20.index.10_46_24_November.nGroupDN.3.nGroupCC.3.damaging.SameBeta.RData"
 #load(paste0("../NewTestR/TestR/HBproject/MainPaper/RDataNewDec1/", fileN))
 load(paste0("../NewTestR/TestR/HBproject/MainPaper/RDataNew1/", fileN))
-#load("/Users/hoang/Documents/GitHub/DataFile/Test4testPrior1077/TestArray.200010.gammaMeanDN.1.5.gammaMeanDenovo.20.gammaMeanDN2.1.5.gammaMeanDenovo2.5.pi0.0.05.rhocC.0.0002161572.rhoCC2.0.000123642505820651.lowerHyperGamma.1.casecontrolAndDenovo.1classes.RData")
+
+load("../DataFile/Test4testPrior1077/TestArray.50001.gammaMeanDN.2.5.gammaMeanDenovo.20.gammaMeanDN2.1.5.gammaMeanDenovo2.5.pi0.0.05.rhocC.0.0002161572.rhoCC2.0.000123642505820651.lowerHyperGamma.1.casecontrolAndDenovo.1classes.RData")
 fileR <- dir("script", ".R$")
 for (ii in fileR)
     source(paste0("script/", ii))
 
 stan_trace(testIntegratedModel)
-
 pars0 <- estimatePars(pars = colnames(as.data.frame(testIntegratedModel)),
                      mcmcResult = testIntegratedModel)
 

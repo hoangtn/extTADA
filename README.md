@@ -6,6 +6,10 @@
 
 3. Predict number of significant genes based on a threshold using known genetic parameters (mainly from the tested data sets).
 
+## Requirement
+
+*rstan*, *locfit* have to be installed.
+
 ## extTADA can also be used for only de novo data OR only case/control (transmitted/untransmitted) data.
 
 # Examples

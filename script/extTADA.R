@@ -1,7 +1,7 @@
 ##########There are three models written in this script: DNandCCextTADA (de novo + case control), DNextTADA (only de novo), CCextTADA (only case-control)
 ##########Users can change prior information as they wish
 library("rstan")
-library("coda")
+#library("coda")
 ########################################
 #######De novo + Case control
 #August 1, 2016: Hoang Nguyen
@@ -29,11 +29,18 @@ data {
     real<lower=0> upperPi0;
     real<lower=0> lowerPi0;
     real<lower=0> lowerHyperGamma; //Low limit for mean of relative risks
-    real<lower=0> lowerGamma; //Low limit for relative risks 
+    real<lower=0> lowerGamma; //Low limit for relative risks
     real<lower=0> lowerBeta;
     real<lower=0> hyperBetaDN0[NCdn];
     real<lower=0> hyperBetaCC0[NCcc];
     int<lower=0> adjustHyperBeta; //Option to adjust betas or not; if this option is used (!=0) then beta is a non-linear function of gamma means
+    real<lower=0> hyper2GammaMeanDN[NCdn]; //hyperGammaMeanDN ~ gamma(hyper2GammaMeanDN, hyper2BetaDN)
+    real<lower=0> hyper2BetaDN[NCdn]; //hyperGammaMeanDN ~ gamma(hyper2GammaMeanDN, hyper2BetaDN)
+    real<lower=0> hyper2GammaMeanCC[NCcc]; //hyperGammaMeanCC ~ gamma(hyper2GammaMeanCC, hyper2BetaCC)
+    real<lower=0> hyper2BetaCC[NCcc]; //hyperGammaMeanCC ~ gamma(hyper2GammaMeanCC, hyper2BetaCC)
+
+
+
 
     }
 
@@ -58,11 +65,11 @@ transformed parameters {
       for (i1i in 1:NCcc){
             hyperBetaCC[i1i] = exp(betaPars[1]*hyperGammaMeanCC[i1i]^(betaPars[2]) + betaPars[3]); //,  hyperBetaMax);
 
-       } 
+       }
 
       for (i2i in 1:NCdn){
             hyperBetaDN[i2i] = exp(betaPars[1]*hyperGammaMeanDN[i2i]^(betaPars[2]) + betaPars[3]); //,  hyperBetaMax);
-      
+
        }
    }
     else {
@@ -81,7 +88,7 @@ transformed parameters {
 
      //Case control data: sample for hyper priors (NPcc populations and Kcc categories)
      for (ip in 1:NCcc){
-         hyperGammaMeanCC[ip]  ~ gamma(1, 0.1); //gamma(1, 0.05); //normal(15, 10); //gamma(1, 0.1);
+         hyperGammaMeanCC[ip]  ~ gamma(hyper2GammaMeanCC[ip], hyper2BetaCC[ip]); //gamma(1, 0.05); //normal(15, 10); //gamma(1, 0.1);
 
      }
 
@@ -90,8 +97,8 @@ transformed parameters {
          }
 
   //De novo data: sample for hyper priors (NPdn populations and Kdn categories)
-    for (ip in 1:NCdn){ 
-          hyperGammaMeanDN[ip]	~ gamma(1, 0.05); //gamma(1, 0.1); //normal(15, 10);
+    for (ip in 1:NCdn){
+          hyperGammaMeanDN[ip]	~ gamma(hyper2GammaMeanDN[ip], hyper2BetaDN[ip]); //gamma(1, 0.02); //gamma(1, 0.05); //gamma(1, 0.1); //normal(15, 10);
     }
 
     for (ip in 1:NCdn){
@@ -138,10 +145,12 @@ data {
     real<lower=0> upperPi0;
     real<lower=0> lowerPi0;
     real<lower=0> lowerHyperGamma; //Low limit for mean of relative risks
-    real<lower=0> lowerGamma; //Low limit for relative risks 
+    real<lower=0> lowerGamma; //Low limit for relative risks
     real<lower=0> lowerBeta;
     real<lower=0> hyperBetaDN0[NCdn];
     int<lower=0> adjustHyperBeta; //Option to adjust betas or not; if this option is used (!=0) then beta is a non-linear function of gamma means
+    real<lower=0> hyper2GammaMeanDN[NCdn]; //hyperGammaMeanDN ~ gamma(hyper2GammaMeanDN, hyper2BetaDN)
+    real<lower=0> hyper2BetaDN[NCdn]; //hyperGammaMeanDN ~ gamma(hyper2GammaMeanDN, hyper2BetaDN)
 
     }
 
@@ -156,8 +165,8 @@ transformed parameters {
     real hyperBetaDN[NCdn];
     if (adjustHyperBeta != 0) {
       for (i2i in 1:NCdn){
-            hyperBetaDN[i2i] = exp(betaPars[1]*hyperGammaMeanDN[i2i]^(betaPars[2]) + betaPars[3]); 
-      
+            hyperBetaDN[i2i] = exp(betaPars[1]*hyperGammaMeanDN[i2i]^(betaPars[2]) + betaPars[3]);
+
        }
    }
     else {
@@ -174,8 +183,8 @@ transformed parameters {
 
 
   //De novo data: sample for hyper priors (NPdn populations and Kdn categories)
-    for (ip in 1:NCdn){ 
-          hyperGammaMeanDN[ip]	~ gamma(1, 0.05); //gamma(1, 0.1); //normal(15, 10);
+    for (ip in 1:NCdn){
+          hyperGammaMeanDN[ip]	~ gamma(hyper2GammaMeanDN[ip], hyper2BetaDN[ip]); //gamma(1, 0.1); //normal(15, 10);
     }
 
     for (ip in 1:NCdn){
@@ -221,10 +230,12 @@ data {
     real<lower=0> upperPi0;
     real<lower=0> lowerPi0;
     real<lower=0> lowerHyperGamma; //Low limit for mean of relative risks
-    real<lower=0> lowerGamma; //Low limit for relative risks 
+    real<lower=0> lowerGamma; //Low limit for relative risks
     real<lower=0> lowerBeta;
     real<lower=0> hyperBetaCC0[NCcc];
     int<lower=0> adjustHyperBeta; //Option to adjust betas or not; if this option is used (!=0) then beta is a non-linear function of gamma means
+    real<lower=0> hyper2GammaMeanCC[NCcc]; //hyperGammaMeanCC ~ gamma(hyper2GammaMeanCC, hyper2BetaCC)
+    real<lower=0> hyper2BetaCC[NCcc]; //hyperGammaMeanCC ~ gamma(hyper2GammaMeanCC, hyper2BetaCC)
 
     }
 
@@ -243,8 +254,8 @@ transformed parameters {
       for (i1i in 1:NCcc){
             hyperBetaCC[i1i] = exp(betaPars[1]*hyperGammaMeanCC[i1i]^(betaPars[2]) + betaPars[3]); //,  hyperBetaMax);
 
-       } 
-   
+       }
+
    }
     else {
         hyperBetaCC = hyperBetaCC0;
@@ -261,7 +272,7 @@ transformed parameters {
 
      //Case control data: sample for hyper priors (NPcc populations and Kcc categories)
      for (ip in 1:NCcc){
-         hyperGammaMeanCC[ip]  ~ gamma(1, 0.1); //gamma(1, 0.05); //normal(15, 10); //gamma(1, 0.1);
+         hyperGammaMeanCC[ip]  ~ gamma(hyper2GammaMeanCC[ip], hyper2BetaCC[ip]); //gamma(1, 0.05); //normal(15, 10); //gamma(1, 0.1);
 
      }
 
@@ -269,14 +280,14 @@ transformed parameters {
          gammaMeanCC[ip] ~ gamma(hyperGammaMeanCC[ip]*hyperBetaCC[ip], hyperBetaCC[ip]);
          }
 
-  
+
 ////Main program
 //Loop through data points
 ////
      for (ii in 1:NN){
          ps[1] = log1m(pi0);
          ps[2] = log(pi0);
-  
+
     //For case-control data
          for (jj in 1:NCcc){
              ps[1] = ps[1] + binomial_lpmf(dataCCcase[ii, jj] | dataCCtotal[ii, jj], thetaH0[jj]); //Add Null hypothesis
@@ -287,6 +298,7 @@ transformed parameters {
          }
 }
 "
+
 ###Bayes Factor For Case-control
 BayesFactorCC3 <- function(x.case, x.control, Nsample,
                            gamma.meanCC, betaCC, rhoCC, nuCC){
