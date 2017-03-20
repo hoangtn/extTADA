@@ -56,40 +56,53 @@ Carolina, Chapel Hill, North Carolina 27599-7264, USA.}
 \begin{document}
 \maketitle
 
-\begin{abstract} Integrating rare variation from family and case/control studies has successfully
-implicated specific genes contributing to risk of autism spectrum disorder (ASD). In schizophrenia
-(SCZ), however, while sets of genes have been implicated through study of rare variation, very few
-individual risk genes have been identified. Here, we apply hierarchical Bayesian modeling of rare
-variation in schizophrenia and describe the proportion of risk genes and distribution of risk
-variant effect sizes across multiple variant annotation categories. Briefly, we developed a pipeline
-based on the previous work used in ASD studies to jointly estimate genetic parameters for one or
-multiple combined populations of any disease. We applied this method to the largest available
-collection for rare variants in schizophrenia (1,077 families, 6,699 cases and 13,028 controls). We
-defined five variant annotation categories: disruptive (nonsense, frameshift, essential splice site
-mutations), damaging (predicting damaging by seven algorithms), silentCFPK (silent mutations within
-frontal cortex-derived DHS) de novo mutations, and disruptive and damaging missense case/control
-singletons. We estimated that 8.01$\%$ of approximately 20,000 genes are risk genes (95$\%$ credible
-interval, CI, 4.59-12.9$\%$), with mean effect sizes (95$\%$ CIs) of 12.25 (4.8- 22.22) for
-disruptive de novos, 1.44 (1-3.16) for missense damaging de novos, and 1.22 (1-2.16) for silentCFPK
-de novos. The mean effect sizes of damaging and disruptive singleton variants for three case-control
-populations were 2.09 (1.04-3.54), 2.44 (1.04, 5.73) and 1.04 (1-1.19) respectively. Our analysis
-identified only two known SCZ risk genes with FDR$<$0.05: SETD1A and TAF13; and two other genes with
-FDR $<$ 0.1:  RB1CC1 and PRRC2A. We further used FDR to analyze the enrichment of several candidate
-gene sets. Significant results are observed in gene sets previously implicated in schizophrenia
-(including in a subset of these data): FMRP targets, promoter targets of CHD8, splice targets of
-RBFOX, constrained genes, genes with de novo mutations in ASD and developmental disorder, synaptic
-genes (need to describe some 'abnormal' genes). Novel result was observed for essential genes which
-were found significantly with autism genes in a recent study. We also applied the pipeline to infer
-genetic parameters for a total of 10,792 families and 4,058 cases/controls of four other
-neurodevelopmental disorders: autism spectrum disorder (ASD), intellectual disorder (ID),
-developmental disorder (DD) and epilepsy (EPI). The predicted proportions of risk genes in these
-diseases were smaller than that in SCZ ($< 5\%$ for all diseases), and larger in ASD ($5\%$) than in
-the other disorders ($< x\%$). We report 164 and 58 genes with FDR $<$ 0.05 for DD and ID,
-respectively. Of these, 101 of 161 and 15 of 58 genes are not currently known DD and ID genes.
-Overall, our results in schizophrenia replicate those of previous studies, confirming the robustness
-of our approach. Our method is able to identify novel risk genes for SCZ as well as for other
-diseases. We conduct power analyses under our inferred model to quantify the improvement in power to
-detect risk genes as more data become available.
+\begin{abstract}
+Integrating rare variation from family and case/control studies has
+successfully implicated specific genes contributing to risk of autism
+spectrum disorder (ASD). In schizophrenia (SCZ), however, while sets of
+genes have been implicated through study of rare variation, very few
+individual risk genes have been identified. Here, we apply
+hierarchical Bayesian modeling of rare variation in schizophrenia and
+describe the proportion of risk genes and distribution of risk variant
+effect sizes across multiple variant annotation categories. Briefly,
+we developed a pipeline based on the previous work used in ASD studies to jointly estimate genetic parameters for one
+or multiple combined populations of any disease.
+ We applied this method to the largest available collection for rare
+variants in schizophrenia (1,077 families, 6,699 cases and 13,028 controls). We defined five variant annotation categories:
+disruptive (nonsense, frameshift, essential splice site mutations),
+damaging (predicting damaging by seven algorithms), silentCFPK (silent
+mutations within frontal cortex-derived DHS)
+de novo mutations, and
+disruptive and damaging missense case/control singletons. We estimated
+that 8.01$\%$ of approximately 20,000 genes are risk genes (95$\%$ credible
+interval, CI, 4.59-12.9$\%$), with mean effect sizes (95$\%$ CIs) of 12.25
+(4.8- 22.22) for disruptive de novos, 1.44 (1-3.16) for missense
+damaging de novos, and 1.22 (1-2.16) for silentCFPK de novos. The mean effect sizes of damaging and disruptive singleton variants for three case-control populations were
+2.09 (1.04-3.54), 2.44 (1.04, 5.73) and 1.04 (1-1.19)
+respectively. Our analysis identified only two known SCZ risk genes with FDR$<$0.05:
+SETD1A and TAF13; and two other genes with FDR $<$ 0.1:  RB1CC1 and
+PRRC2A. We further used FDR to analyze the enrichment of several candidate gene
+sets. Significant results are observed in gene sets previously
+implicated in schizophrenia (including in a subset of these data):
+FMRP targets, promoter targets of CHD8, splice
+targets of RBFOX, constrained genes, genes with de novo mutations in ASD and
+developmental disorder, synaptic genes (need to describe some
+'abnormal' genes). Novel result was observed for essential genes which
+were found significantly with autism genes in a recent study.
+We also applied the pipeline to infer genetic
+parameters for a total of 10,792 families and 4,058 cases/controls of four other
+neurodevelopmental disorders: autism spectrum disorder (ASD),
+intellectual disorder (ID), developmental disorder (DD) and epilepsy
+(EPI). The predicted proportions of risk genes in these diseases were smaller
+than that in SCZ ($< 5\%$ for all diseases), and larger in ASD ($5\%$) than in the other disorders ($< x\%$).
+We report 164 and 58 genes with FDR $<$ 0.05 for DD
+and ID, respectively. Of these, 101 of 161 and 15 of 58 genes are not currently
+known DD and ID genes.
+Overall, our results in schizophrenia
+replicate those of previous studies, confirming the robustness of our approach. Our method is able
+to identify novel risk genes for SCZ as well as for other diseases.
+We conduct power analyses under our inferred model to quantify the improvement in power to detect risk
+genes as more data become available.
 
 \end{abstract}
 
@@ -124,10 +137,12 @@ framework (\texttt{extTADA}, \underline{ext}ended \underline{T}ransmission \unde
 be used to analyze only de novo data, only case-control data or the
 combination of both.
 \texttt{extTADA} uses all variant classes to
-simultaneously estimate genetic parameters (therefore it assumes that all classes play important roles in the genetic architecture of the tested disease). In \texttt{extTADA}, a conditional
+jointly estimate genetic parameters (therefore it assumes that all classes play important roles in the genetic architecture of the tested disease). In \texttt{extTADA}, a conditional
 model for case-control sample frequency allows rapid analysis without population frequency parameters (which are very poorly estimated for rare variants), facilitating estimation of
 parameters via Markov Chain Monte Carlo
 (MCMC). In addition, we designed \texttt{extTADA} for the analysis of data from multiple population samples.
+
+% We should use "joint" instead of "simultaneous" throughout. Do you disagree?
 
 In this study, we used \texttt{extTADA} to analyze the largest available exome-sequence dataset, including
 19,727 (6,699+13,028) case+control samples and 1,077 trio/quad families for SCZ. We estimated mean relative risks (RRs) of different variant annotation categories as
@@ -144,29 +159,31 @@ The pipeline is publicly available at https://github.com/hoangtn/extTADA.
 %%%%%%%%%%%%%%
 \section{Results}
 
-The \texttt{extTADA} pipeline and its comparison with
-\texttt{TADA} is described in Figure \ref{fig:TADAandextTADA}. Figure
-\ref{fig:wholedataAnalysis} summarises the workflow of the
-current study. As presented in  Figure \ref{fig:wholedataAnalysis},
-variants/mutations in this study were divided into categories:
-synonymous, missense, loss-of-function (LoF), missense damaging (MiD), silent mutations
-within frontal cortex-derived DHS (silentCFPK), and
-then three main categories were used in the analysis: MiD, loF and
-silentCFPK.
+The \texttt{extTADA} pipeline and its comparison with \texttt{TADA} is described in Figure
+\ref{fig:TADAandextTADA}. Figure \ref{fig:wholedataAnalysis} summarises the workflow of the current
+study. As presented in Figure \ref{fig:wholedataAnalysis}, variants/mutations in this study were
+divided into categories: synonymous, missense, loss-of-function (LoF), missense damaging (MiD),
+silent mutations within frontal cortex-derived DHS (silentCFPK), and then three main categories were
+used in the analysis: MiD, loF and silentCFPK.
 
-\subsection{\texttt{extTADA} pipeline}
+\subsection{The \texttt{extTADA} pipeline}
 
-We used an integrated approach in which de novo (DN) and case control (CC)
-information was used to infer risk genes. The current study is a
-framework which is extended from the Transmission and Disequilibrium
-Association (TADA) model proposed by
-\cite{he2013integrated, de2014synaptic}. The extensions to
-the TADA package consisted of: using an approximate model to estimate parameters
-for case-control model, estimating all parameters simultaneously,
-controlling the proportion of protective variants and especially using
-the model in data sets from multiple populations as shown in Figure \ref{fig:TADAandextTADA}. We used the same
+We used a Bayesian approach to integrate de novo (DN) and case control (CC) rare variant data to
+infer genetic architecture parameters and to identify risk genes under a model with additive to
+dominant deleterious risk alleles. The framework is extended from the Transmission and
+Disequilibrium Association (TADA) model proposed by \cite{he2013integrated, de2014synaptic}, as
+shown in Figure \ref{fig:TADAandextTADA}. Primary extensions to the TADA model facilitate joint
+Bayesian inference of rare variant genetic architecture model parameters (including the risk gene
+mixture proportion $\pi$, which is fixed in \texttt{TADA}), and include a likelihood formulation in
+which all variant categories contribute to the inference, which also allows inference based on
+multiple samples. \texttt{extTADA} also uses an approximate expression for case-control data
+probability that eliminates population allele frequency parameters, and controls the proportion of
+protective variants by constraining effect size distribution scale parameters. We used the same
 symbols for parameters as those used in \cite{he2013integrated, de2014synaptic} in the following
-sections. For completeness, in this section and the Methods section, we also described in detail methods originally presented in the TADA papers \citep{he2013integrated,de2014synaptic}.
+sections. For comparison, we also described in detail methods originally presented in the TADA
+papers \citep{he2013integrated,de2014synaptic}.
+
+%% Above,  I am putting things in order of importance (with which I think you agree), but also re-shaping a bit according to my view. The big thing is that the internal model is what allows for multiple populations (right??), but it also analyzes different variant categories a little differently (allow them to jointly contribute to pi estimation, which is joint with )
 
 
 In summary, for a given gene, all variants of a category
@@ -612,7 +629,7 @@ we tested 1745 gene sets from different data bases and the 161 gene
 sets above. Significant results were observed in 161 gene sets including 36 gene sets in the
  above 161 gene sets (Table \ref{tab:enrichmentGeneSetDataDrivenApproach})
 . The top significant gene sets in the known gene sets still had the
-lowest p values in these results.
+lowest p values in these results (Table  \ref{tab:enrichmentGeneSetDataDrivenApproach}).
 
 The most interesting result for GO gene
 sets was GO:0051179/localization (p = 5.2e-03). This gene set was reported by
