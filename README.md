@@ -27,6 +27,6 @@ Users can re-produce examples below to know how to use extTADA.
 
 ## Developmental disorder (DD) data
 
-[examples/extTADAforDD.ipynb](./examples/extTADAforDD.ipynb)
+[examples/extTADAforDD.ipynb](./examples/extTADAforDD.ipynb) or [examples/extTADAforDD.pdf](./examples/extTADAforDD.pdf)
 
 

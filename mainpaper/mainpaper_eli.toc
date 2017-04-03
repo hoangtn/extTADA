@@ -1,9 +1,9 @@
 \contentsline {section}{\numberline {1}Introduction}{4}{section.1}
 \contentsline {section}{\numberline {2}Results}{5}{section.2}
-\contentsline {subsection}{\numberline {2.1}\texttt {extTADA} pipeline}{5}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.1}The \texttt {extTADA} pipeline}{5}{subsection.2.1}
 \contentsline {subsection}{\numberline {2.2}Test \texttt {extTADA} on simulated data. }{7}{subsection.2.2}
 \contentsline {subsubsection}{\numberline {2.2.1}Test \texttt {extTADA} for only CC data}{7}{subsubsection.2.2.1}
-\contentsline {subsubsection}{\numberline {2.2.2}Evaluate the performance on integrated DN and CC data}{8}{subsubsection.2.2.2}
+\contentsline {subsubsection}{\numberline {2.2.2}Evaluate the performance on integrated DN and CC data}{9}{subsubsection.2.2.2}
 \contentsline {subsection}{\numberline {2.3}Schizophrenia data sets}{10}{subsection.2.3}
 \contentsline {subsubsection}{\numberline {2.3.1}Extract data sets to analyze integratively}{10}{subsubsection.2.3.1}
 \contentsline {subsubsection}{\numberline {2.3.2}Integrated analysis of de novo mutations and case-control variants}{11}{subsubsection.2.3.2}
@@ -47,6 +47,6 @@
 \contentsline {section}{\numberline {5}Acknowledgements}{32}{section.5}
 \contentsline {section}{\numberline {6}Supplementary information}{33}{section.6}
 \contentsline {subsection}{\numberline {6.1}Sup Table}{33}{subsection.6.1}
-\contentsline {subsection}{\numberline {6.2}Sup Figure}{39}{subsection.6.2}
-\contentsline {subsection}{\numberline {6.3}Sup Information}{45}{subsection.6.3}
-\contentsline {paragraph}{\numberline {6.3.0.1}Calculate Bayes Factor for case/control data}{45}{paragraph.6.3.0.1}
+\contentsline {subsection}{\numberline {6.2}Sup Figure}{41}{subsection.6.2}
+\contentsline {subsection}{\numberline {6.3}Sup Information}{47}{subsection.6.3}
+\contentsline {paragraph}{\numberline {6.3.0.1}Calculate Bayes Factor for case/control data}{47}{paragraph.6.3.0.1}
