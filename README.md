@@ -32,7 +32,7 @@ Users can re-produce examples below to know how to use extTADA.
 
 # Citation
 
-If you use *extTAD*, please cite: 
+If you use *extTADA*, please cite: 
 
 *Bayesian Integrated Analysis Of Multiple Types Of Rare Variants To
 Infer Risk Genes For Schizophrenia And Other Neurodevelopmental
