@@ -30,3 +30,14 @@ Users can re-produce examples below to know how to use extTADA.
 [examples/extTADAforDD.ipynb](./examples/extTADAforDD.ipynb) or [examples/extTADAforDD.pdf](./examples/extTADAforDD.pdf)
 
 
+# Citation
+
+If you use *extTAD*, please cite: 
+
+*Bayesian Integrated Analysis Of Multiple Types Of Rare Variants To
+Infer Risk Genes For Schizophrenia And Other Neurodevelopmental
+Disorders*
+
+Hoang T. Nguyen, Amanda Dobbyn, Laura M. Huckins, Douglas Ruderfer, Gulio Genovese, Menachem Fromer, Xinyi Xu, Joseph Buxbaum, Dalila Pinto, Christina Hultman, Pamela Sklar, Shaun M. Purcell, Xin He, Patrick F. Sullivan, Eli Ayumi Stahl
+
+bioRxiv 135293; doi: https://doi.org/10.1101/135293
