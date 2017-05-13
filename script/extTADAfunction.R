@@ -39,7 +39,7 @@ extTADA <- function(modelName  ,
              hyper2BetaCC <- rep(0.2, dim(dataCCcase)[2])
          if ((adjustHyperBeta == 0) & is.null( hyperBetaDN0))
              hyperBetaDN0 <- rep(1, dim(dataDN)[2])
-         if ((adjustHyperBeta == 0) & is.null( hyperBetaCC0))
+         if ((adjustHyperBeta == 0) & is.null( hyperBetaCC0) & !is.null(dataCCcase))
              hyperBetaCC0 <- rep(1, dim(dataCCcase)[2])
 
          NCdn <- dim(dataDN)[2]
