@@ -56,7 +56,10 @@ calculateFDR <- function(pars,
         bfAll <- bfAll*apply(bfCC, 1, prod)
     }
     outData$BF <- bfAll
+#    outData$BFdn <- bfDN #cbind(outData, bfDN)
     outData <- outData[order(-outData$BF),]
+    tempPP <- pars$pi0*outData$BF
+    outData$PP <- (pars$pi0*outData$BF)/(1 - pars$pi0 + pars$pi0*outData$BF)
     outData$qvalue <- Bayesian.FDR(outData$BF, 1 - pars$pi0)$FDR
 
     return(outData)
