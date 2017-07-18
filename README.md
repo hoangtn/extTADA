@@ -27,11 +27,15 @@ Users can re-produce examples below to know how to use extTADA.
 
 ## Just one step to obtain final results
 
-[/examples/extTADA_OneStep.ipynb](./examples/extTADA_OneStep.ipynb)
+[examples/extTADA_OneStep.ipynb](./examples/extTADA_OneStep.ipynb)
 
 ## Some steps (to adjust plots for publication)
 
 [examples/extTADA_MultipleSteps.ipynb](./examples/extTADA_MultipleSteps.ipynb)
+
+or (if cannot open ipython file)
+
+[examples/extTADA_MultipleSteps.pdf](./examples/extTADA_MultipleSteps.pdf)
 
 
 # Citation
