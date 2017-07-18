@@ -1,5 +1,8 @@
 estimatePars <- function(pars, mcmcResult, nThin = NULL){
     mcmcDataFrame <- as.data.frame(mcmcResult)
+
+    if (is.null(pars))
+        pars <- colnames(mcmcDataFrame)
     pars <- pars[grep("hyper|pi", pars)]
     message("====\nOnly pi and hyper parameters are estimated in this step\n",
             "extTADA does not calculate HPDs for hyper betas, just their medians\n===\n")

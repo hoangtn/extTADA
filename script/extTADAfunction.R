@@ -1,6 +1,6 @@
-extTADA <- function(modelName  ,
-                         dataDN = NULL, mutRate = NULL, Ndn = NULL,
-                         dataCCcase = NULL, dataCCcontrol = NULL, Ncase = NULL, Ncontrol = NULL,
+extTADA <- function(modelName  , inputData,
+                         Ndn = NULL,
+                         Ncase = NULL, Ncontrol = NULL,
                     nIteration = NULL, nIteration2 = NULL,
                     nThin = NULL, nThin2 = NULL, nCore = 1, nChain = 1,
                          hyperBetaDN0 = NULL,
@@ -12,131 +12,88 @@ extTADA <- function(modelName  ,
                          lowerHyperGamma = 1, lowerGamma = 1, #Should be default
                          betaPars = c(6.7771073, -1.7950864, -0.2168248), #Adjust beta's values: should be default
                     adjustHyperBeta = as.integer(1), ##1 if want to adjust beta, 0 if don't want to adjust beta
-                    autoAdjustHyperBeta = TRUE)
+                    autoAdjustHyperBeta = FALSE,
+                    drawHeatMap = TRUE,
+                    writeResult = TRUE)
      {
 
-         if (is.null(nIteration))
-             stop("======\nNo input for the nIteration parameter\n=====")
-         if ((is.null(dataDN) | is.null(mutRate)) & (is.null(dataCCcase) | is.null(dataCCcontrol)))
-             stop("Need to have input data: only DN, only CC or DN + CC")
-         if (is.null(nThin))
-             nThin = ifelse(nIteration > 1000, floor(nIteration/1000), 1)
-         if (nCore != nChain)
-             warning("nCore is different from nChain")
-         if (!is.null(dataDN))
-             Ngene <- dim(dataDN)[1]
-         if (!is.null(dataCCcase))
-             Ngene <- dim(dataCCcase)[1]
-         message("\nThere are ", Ngene, " genes in this analysis")
 
-         if (is.null(hyper2GammaMeanDN) & !is.null(dataDN))
-             hyper2GammaMeanDN <- rep(1, dim(dataDN)[2])
-         if (is.null(hyper2BetaDN) & !is.null(dataDN))
-             hyper2BetaDN <- rep(0.025, dim(dataDN)[2])
-        if (is.null(hyper2GammaMeanCC) & !is.null(dataCCcase))
-             hyper2GammaMeanCC <- rep(1, dim(dataCCcase)[2])
-         if (is.null(hyper2BetaCC) & !is.null(dataCCcase))
-             hyper2BetaCC <- rep(0.2, dim(dataCCcase)[2])
-         if ((adjustHyperBeta == 0) & is.null( hyperBetaDN0))
-             hyperBetaDN0 <- rep(1, dim(dataDN)[2])
-         if ((adjustHyperBeta == 0) & is.null( hyperBetaCC0) & !is.null(dataCCcase))
-             hyperBetaCC0 <- rep(1, dim(dataCCcase)[2])
+###MCMC process
+         geneName <- data.frame(inputData[, "Gene"])
+         dataDN <- data.frame(inputData[, grep("dn_", colnames(inputData))])
+         mutRate <- data.frame(inputData[, grep("mut_", colnames(inputData))])
+         dataCCcase <- data.frame(inputData[, grep("cc_case", colnames(inputData))])
+         dataCCcontrol <- data.frame(inputData[, grep("cc_control", colnames(inputData))])
 
-         NCdn <- dim(dataDN)[2]
-         NCcc <- dim(dataCCcase)[2]
-         if (is.null(Ncase))              Ncase = 0
-         if (is.null(Ncontrol)) Ncontrol = 1
-         if (is.null(Ndn)) Ndn = 0
-         if (is.null(hyperBetaDN0)) hyperBetaDN0 <- rep(1, length(dataDN[1, ]))
-         if (is.null(hyperBetaCC0)) hyperBetaCC0 <- rep(4, length(dataCCcase[1, ]))
-         if (is.null(hyper2GammaMeanDN)) hyper2GammaMeanDN = rep(1, length(dataDN[1, ]))
-         if (is.null(hyper2GammaMeanCC)) hyper2GammaMeanCC = rep(4, length(dataCCcase[1, ]))
-         if (is.null(hyper2BetaDN)) hyper2BetaDN = rep(0.05, length(dataDN[1, ]))
-         if (is.null(hyper2BetaCC)) hyper2BetaCC = rep(0.2, length(dataCCcase[1, ]))
+         if (dim(dataCCcontrol)[1] == 0)
+             dataCCcontrol = NULL
+         if (dim(dataCCcase)[1] == 0)
+             dataCCcase = NULL
+         if (dim(dataDN)[1] == 0)
+             dataDN = NULL
+         if (dim(mutRate)[1] == 0)
+             mutRate = NULL
+
+         message("MCMC is running")
+         mcmcData <- extTADAmcmc(modelName = modelName,
+                                 dataDN = dataDN, mutRate = mutRate, Ndn = Ndn,
+                                 dataCCcase = dataCCcase, dataCCcontrol = dataCCcontrol, Ncase = Ncase, Ncontrol = Ncontrol,
+                                 nIteration = nIteration, nIteration2 = nIteration2,
+                                 nThin = nThin, nThin2 = nThin2, nCore = nCore, nChain = nChain,
+                                 hyperBetaDN0 = hyperBetaDN0, hyperBetaCC0 = hyperBetaCC0,
+                                 hyper2GammaMeanDN = hyper2GammaMeanDN, hyper2BetaDN = hyper2BetaDN, ##Priors for mean RRs: meanRR ~ gamma(hyper2GammaMeanDN, hyper2BetaDN)
+                                 hyper2GammaMeanCC = hyper2GammaMeanCC, hyper2BetaCC = hyper2BetaCC,
+                                 upperPi0 = upperPi0, lowerPi0 = lowerPi0, lowerBeta = lowerBeta, ##Lower and upper limits of pi: should be default
+                                 lowerHyperGamma = lowerHyperGamma, lowerGamma = lowerGamma, #Should be default
+                                 betaPars = betaPars, #Adjust beta's values: should be default
+                                 adjustHyperBeta = adjustHyperBeta, ##1 if want to adjust beta, 0 if don't want to adjust beta
+                    autoAdjustHyperBeta =  autoAdjustHyperBeta)
 
 
 
-         modelData <- list(NN = Ngene, #Gene numbers
-                           K = 2, #Hypothesis numbers: should be default
-                           NCdn = NCdn, #Number of de novo classes
-                           NCcc = NCcc,
-                           Ndn = array(Ndn), # Family numbers
-                           Ncase = array(Ncase), Ncontrol = array(Ncontrol), Ntotal = array(Ncase + Ncontrol),
-                           dataDN = dataDN, # Denovo data
-                           mutRate = mutRate, # Mutation rates
-                           dataCCcase = data.frame(dataCCcase), dataCCtotal = data.frame(dataCCcase + dataCCcontrol),
-                           thetaH0 = array(Ncase/(Ncase + Ncontrol)),
-                           betaPars = array(betaPars), #Adjust beta's values: should be default
-                           adjustHyperBeta = adjustHyperBeta, ##1 if want to adjust beta, 0 if don't want to adjust beta
-                           upperPi0 = upperPi0, lowerPi0 = lowerPi0, lowerBeta = lowerBeta, ##Lower and upper limits of pi: should be default
-                          lowerHyperGamma = lowerHyperGamma, lowerGamma = lowerGamma, #Should be default
-                          hyperBetaDN0 = array(hyperBetaDN0),
-                          hyperBetaCC0 = array(hyperBetaCC0),
-                            hyper2GammaMeanDN = array(hyper2GammaMeanDN),##Priors for mean RRs: meanRR ~ gamma(hyper2GammaMeanDN, hyper2BetaDN)
-                          hyper2BetaDN = array(hyper2BetaDN),
-                          hyper2GammaMeanCC = array(hyper2GammaMeanCC),
-                          hyper2BetaCC = array(hyper2BetaCC)  )
+###############Estimate genetic parameters
+         message("\nEstimate genetic parameters from MCMC results")
+         pars0 <- estimatePars(pars = NULL, mcmcResult = mcmcData)
 
-         message("\n=============FIRST TIME ===============\n")
-         message("\nSampling with nter = ", nIteration, " and nThin = ", nThin, "\n")
-         message("\nThe model ", deparse(substitute(modelName)), " is used\n")
-         mcmcModel <- stan(model_code = modelName,
-                        data = modelData, ##Model data as described above
-                        iter = nIteration, chains = nChain, cores = nCore, thin = nThin)
-####Re-sample using new hyper betas
-         if ( autoAdjustHyperBeta){
-             if (!is.null(nIteration2))
-                 nIteration = nIteration2
+         pars1 <- as.numeric(pars0[, 1])
+         names(pars1) <- rownames(pars0)
 
-             if (is.null(nThin2))
-                 nThin2 = ifelse(nIteration > 1000, floor(nIteration/1000), 1)
-             nThin = nThin2
+         parsFDR <- list(pi0 = as.numeric(pars1[grep("pi0", names(pars1))]),
+             gammaMeanDN = as.numeric(pars1[grep("hyperGammaMeanDN", names(pars1))]),
+                         betaDN = as.numeric(pars1[grep("hyperBetaDN", names(pars1))]),
+                         gammaMeanCC = as.numeric(pars1[grep("hyperGammaMeanCC", names(pars1))]),
+                         betaCC = as.numeric(pars1[grep("hyperBetaCC", names(pars1))]),
 
-         mcmcData <- as.data.frame(mcmcModel)
-         cName <- colnames(mcmcData)
-         hyperGammaMeanNameCC <- cName[grep("hyperGammaMeanCC", cName)]
-         hyperGammaMeanNameDN <- cName[grep("hyperGammaMeanDN", cName)]
+                         nfamily = Ndn,
+                         ncase = Ncase,
+                         ncontrol = Ncontrol
+                         )
 
-             hyperGammaMeanDN0 <- as.numeric(apply(data.frame(mcmcData[, hyperGammaMeanNameDN]), 2, median))
-             hyperGammaMeanCC0 <- as.numeric(apply(data.frame(mcmcData[, hyperGammaMeanNameCC]), 2, median))
+         message("\nCalculate posterior probabilities and FDRs")
+         dataFDR <- calculateFDR(pars = parsFDR,
+                                 dnData = dataDN, mutData = mutRate,
+                                 caseData = dataCCcase, controlData = dataCCcontrol,
+                                 geneName = geneName)
 
-             hyperBetaDN0 <- exp(betaPars[1]*hyperGammaMeanDN0^(betaPars[2]) + betaPars[3])
-             hyperBetaCC0 <- exp(betaPars[1]*hyperGammaMeanCC0^(betaPars[2]) + betaPars[3])
-
-             adjustHyperBeta <- 0
-
-         modelData <- list(NN = Ngene, #Gene numbers
-                           K = 2, #Hypothesis numbers: should be default
-                           NCdn = NCdn, #Number of de novo classes
-                           NCcc = NCcc,
-                           Ndn = array(Ndn), # Family numbers
-                           Ncase = array(Ncase), Ncontrol = array(Ncontrol), Ntotal = array(Ncase + Ncontrol),
-                           dataDN = dataDN, # Denovo data
-                           mutRate = mutRate, # Mutation rates
-                           dataCCcase = data.frame(dataCCcase), dataCCtotal = data.frame(dataCCcase + dataCCcontrol),
-                           thetaH0 = array(Ncase/(Ncase + Ncontrol)),
-                           betaPars = array(betaPars), #Adjust beta's values: should be default
-                           adjustHyperBeta = adjustHyperBeta, ##1 if want to adjust beta, 0 if don't want to adjust beta
-                           upperPi0 = upperPi0, lowerPi0 = lowerPi0, lowerBeta = lowerBeta, ##Lower and upper limits of pi: should be default
-                          lowerHyperGamma = lowerHyperGamma, lowerGamma = lowerGamma, #Should be default
-                          hyperBetaDN0 = array(hyperBetaDN0),
-                           hyperBetaCC0 = array(hyperBetaCC0),
-                            hyper2GammaMeanDN = array(hyper2GammaMeanDN),##Priors for mean RRs: meanRR ~ gamma(hyper2GammaMeanDN, hyper2BetaDN)
-                          hyper2BetaDN = array(hyper2BetaDN),
-                          hyper2GammaMeanCC = array(hyper2GammaMeanCC),
-                          hyper2BetaCC = array(hyper2BetaCC)  )
-
-             message("\n=============SECOND TIME ===============\n")
-             message("\nThis process is using beta values estimated from the previous process\n")
-         message("\nSampling with nter = ", nIteration, " and nThin = ", nThin, "\n")
-         message("\nThe model ", deparse(substitute(modelName)), " is used\n")
-         mcmcModel <- stan(model_code = modelName,
-                        data = modelData, ##Model data as described above
-                        iter = nIteration, chains = nChain, cores = nCore, thin = nThin)
+         message("\nDraw heatmaps")
+         outTime <-  format(Sys.time(), "%a_%b_%d_%H_%M_%S_%Y")
+         if (drawHeatMap) {
+             pdf(paste0("heatMap", outTime, ".pdf"))
+                          allHyperGamma <- rownames(pars0[grep("hyperGammaMean", rownames(pars0)), ])
+             for (i1 in 1:length(allHyperGamma))
+                 plotParHeatmap(pars = c("pi0", allHyperGamma[i1]), mcmcResult = mcmcData)
+             dev.off()
          }
+         if (writeResult){
+             write.table(dataFDR, paste0("Result_extTADA_PosteriorAndFDR", outTime, ".txt"),
+                         row.names = FALSE, quote = FALSE)
+             write.table(pars0,   paste0("Result_extTADA_estimatedPars", outTime, ".txt"), quote = FALSE)
+         }
+########################
+         message(paste0("\nThe analysis is completed.\nIf you want to analyse steps seperately, please take a look at the example in the manual"))
+
+         return(list(dataFDR = dataFDR, pars = pars0, extTADAmcmc = mcmcData))
 
 
-
-         return(mcmcModel)
           }
 

@@ -25,9 +25,13 @@ These packages have to be installed:
 
 Users can re-produce examples below to know how to use extTADA.
 
-## Developmental disorder (DD) data
+## Just one step to obtain final results
 
-[examples/extTADAforDD.ipynb](./examples/extTADAforDD.ipynb) or [examples/extTADAforDD.pdf](./examples/extTADAforDD.pdf)
+[[./examples/extTADA_OneStep.ipynb]]
+
+## Some steps (to adjust plots for publication)
+
+[[./examples/extTADA_MultipleSteps.ipynb]]
 
 
 # Citation

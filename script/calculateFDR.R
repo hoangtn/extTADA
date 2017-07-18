@@ -4,6 +4,7 @@ calculateFDR <- function(pars,
                          dnData = NULL,
                          mutData = NULL,
                          geneName){
+
     outData <- data.frame(geneName)
     if (!is.null(dnData))
         outData <- cbind(outData, dnData)
@@ -62,6 +63,7 @@ calculateFDR <- function(pars,
     outData$PP <- (pars$pi0*outData$BF)/(1 - pars$pi0 + pars$pi0*outData$BF)
     outData$qvalue <- Bayesian.FDR(outData$BF, 1 - pars$pi0)$FDR
 
+    colnames(outData)[1] <- "Gene"
     return(outData)
 }
 
