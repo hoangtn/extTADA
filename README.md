@@ -21,9 +21,12 @@ These packages have to be installed:
 2. *locfit* [https://cran.rstudio.com/web/packages/locfit/index.html](./https://cran.rstudio.com/web/packages/locfit/index.html)
 
 
-# Examples
+# Examples 
 
 Users can re-produce examples below to know how to use extTADA.
+
+After running example, please see [./QandAfor_extTADA.md](./QandAfor_extTADA.md) if you have
+questions.
 
 ## Just one step to obtain final results
 
@@ -47,4 +50,6 @@ If you use *extTADA*, please cite:
 Hoang T. Nguyen, Amanda Dobbyn, Laura M. Huckins, Douglas Ruderfer, Giulio Genovese, Menachem Fromer, Xinyi Xu, Joseph Buxbaum, Dalila Pinto, Christina Hultman, Pamela Sklar, Shaun M. Purcell, Xin He, Patrick F. Sullivan, Eli Ayumi Stahl
 
 bioRxiv 135293; doi: https://doi.org/10.1101/135293
+
+
 
