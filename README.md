@@ -25,7 +25,7 @@ These packages have to be installed:
 
 Users can re-produce examples below to know how to use extTADA.
 
-After running example, please see [./QandAfor_extTADA.md](./QandAfor_extTADA.md) if you have
+After running examples, please read [QandAfor_extTADA.md](./QandAfor_extTADA.md) if you have
 questions.
 
 ## Just one step to obtain final results
