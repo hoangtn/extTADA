@@ -22,8 +22,13 @@ These packages have to be installed:
 
 ## Gene Lists
 
-If you want to download top genes of schizophrenia (SCZ), intellectual disabilities (ID), developmental disorder (DD), epilepsy or autism spectrum disorder (ASD), you can use the link:
+If you want to download top genes of schizophrenia (SCZ), intellectual disabilities (ID), developmental disorder (DD), epilepsy or autism spectrum disorder (ASD), you can use results analyzed by extTADA inside data. For example, top DD genes:
 
+cat data/DDextTADA.txt |awk '$NF<0.1'
+
+OR download directly from the extTADA paper:
+
+wget https://static-content.springer.com/esm/art%3A10.1186%2Fs13073-017-0497-y/MediaObjects/13073_2017_497_MOESM2_ESM.xlsx
 
 # Examples 
 
@@ -49,11 +54,12 @@ or (if cannot open ipython file)
 
 If you use *extTADA*, please cite: 
 
-*Bayesian Integrated Analysis Of Multiple Types Of Rare Variants To Infer Risk Genes For Schizophrenia And Other Neurodevelopmental Disorders*
+*Integrated Bayesian analysis of rare exonic variants to identify risk genes for schizophrenia and neurodevelopmental disorders*
 
-Hoang T. Nguyen, Amanda Dobbyn, Laura M. Huckins, Douglas Ruderfer, Giulio Genovese, Menachem Fromer, Xinyi Xu, Joseph Buxbaum, Dalila Pinto, Christina Hultman, Pamela Sklar, Shaun M. Purcell, Xin He, Patrick F. Sullivan, Eli Ayumi Stahl
+Hoang T. NguyenEmail author, Julien Bryois, April Kim, Amanda Dobbyn, Laura M. Huckins, Ana B. Munoz-Manchado, Douglas M. Ruderfer, Giulio Genovese, Menachem Fromer, Xinyi Xu, Dalila Pinto, Sten Linnarsson, Matthijs Verhage, August B. Smit, Jens Hjerling-Leffler, Joseph D. Buxbaum, Christina Hultman, Pamela Sklar, Shaun M. Purcell, Kasper Lage, Xin He, Patrick F. Sullivan and Eli A. StahlEmail author
+Genome Medicine 2017 9:114
 
-bioRxiv 135293; doi: https://doi.org/10.1101/135293
+Link: *https://genomemedicine.biomedcentral.com/articles/10.1186/s13073-017-0497-y#MOESM1*
 
 
 
