@@ -24,7 +24,7 @@ These packages have to be installed:
 
 If you want to download top genes of schizophrenia (SCZ), intellectual disabilities (ID), developmental disorder (DD), epilepsy or autism spectrum disorder (ASD), you can use results analyzed by extTADA inside data. For example, top DD genes:
 
-   *cat data/DDextTADA.txt |awk '$NF<0.1'*
+   * cat data/DDextTADA.txt |awk '$NF<0.1'*
 
 OR download directly from the extTADA paper:
 
