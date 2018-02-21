@@ -56,8 +56,9 @@ If you use *extTADA*, please cite:
 
 *Integrated Bayesian analysis of rare exonic variants to identify risk genes for schizophrenia and neurodevelopmental disorders*
 
-Hoang T. NguyenEmail author, Julien Bryois, April Kim, Amanda Dobbyn, Laura M. Huckins, Ana B. Munoz-Manchado, Douglas M. Ruderfer, Giulio Genovese, Menachem Fromer, Xinyi Xu, Dalila Pinto, Sten Linnarsson, Matthijs Verhage, August B. Smit, Jens Hjerling-Leffler, Joseph D. Buxbaum, Christina Hultman, Pamela Sklar, Shaun M. Purcell, Kasper Lage, Xin He, Patrick F. Sullivan and Eli A. StahlEmail author
-Genome Medicine 2017 9:114
+Hoang T. Nguyen, Julien Bryois, April Kim, Amanda Dobbyn, Laura M. Huckins, Ana B. Munoz-Manchado, Douglas M. Ruderfer, Giulio Genovese, 
+Menachem Fromer, Xinyi Xu, Dalila Pinto, Sten Linnarsson, Matthijs Verhage, August B. Smit, Jens Hjerling-Leffler, Joseph D. Buxbaum, 
+Christina Hultman, Pamela Sklar, Shaun M. Purcell, Kasper Lage, Xin He, Patrick F. Sullivan and Eli A. Stahl. Genome Medicine 2017 9:114.
 
 Link: *https://genomemedicine.biomedcentral.com/articles/10.1186/s13073-017-0497-y#MOESM1*
 
