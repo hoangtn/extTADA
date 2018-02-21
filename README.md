@@ -20,6 +20,10 @@ These packages have to be installed:
 
 2. *locfit* [https://cran.rstudio.com/web/packages/locfit/index.html](./https://cran.rstudio.com/web/packages/locfit/index.html)
 
+## Gene Lists
+
+If you want to download top genes of schizophrenia (SCZ), intellectual disabilities (ID), developmental disorder (DD), epilepsy or autism spectrum disorder (ASD), you can use the link:
+
 
 # Examples 
 
