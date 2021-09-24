@@ -49,6 +49,9 @@ or (if cannot open ipython file)
 
 [examples/extTADA_MultipleSteps.pdf](./examples/extTADA_MultipleSteps.pdf)
 
+## License
+
+This project is licensed under GNU GPL v3.
 
 # Citation
 
