@@ -1,5 +1,6 @@
 # Questions 
 
+
 ## How can I input for multiple populations + categories?
 
 You should use populations as categories. For example, if
@@ -28,4 +29,7 @@ cc_case3 = case counts from the *first* category of the *second* population
 cc_case4 = case counts from the *second* category of the *second* population
 
 A similar way should be used for control data.
+
+## Can you describe the probability density function for de novo mutations?
+
 
