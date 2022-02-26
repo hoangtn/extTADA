@@ -30,6 +30,12 @@ cc_case4 = case counts from the *second* category of the *second* population
 
 A similar way should be used for control data.
 
-## Can you describe the probability density function for de novo mutations?
+## Can we manually use other distributions and/or numerical integration to calculate Bayes Factors (e.g,., not negative binomial distributions)?
+
+Yes, people can do that easily. We have a note here:
+
+https://github.com/hoangtn/information_from_other_papers/
+
+
 
 
