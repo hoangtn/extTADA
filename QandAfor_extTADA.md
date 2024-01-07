@@ -36,6 +36,10 @@ Yes, people can do that easily. We have a note here:
 
 https://github.com/hoangtn/information_from_other_papers/
 
+We also tested results from the "dnbinom" function (used inside the original TADA model) and from numerical integration here:
+https://github.com/hoangtn/information_from_other_papers/blob/master/file/Compare_BayesFactors.ipynb
+
+
 
 
 
